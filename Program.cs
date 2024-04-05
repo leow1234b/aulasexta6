@@ -19,9 +19,28 @@ app.MapGet("/", () => "Minha primeira API em C# com watch");
 app.MapGet("/api/produto/listar", () => 
     produtos);
 
+//GET: http://localhost:5225/api/produto/buscar/id_do_produto
+app.MapGet("/api/produto/buscar/{id}", (string id) => 
+{
+    foreach (Produto produtoCadastrado in produtos)
+    
+         if(produtoCadastrado.Id == id)
+      
+        {
+
+        
+         return Results.Ok(produtoCadastrado);
+        }
+        
+        return Results.NotFound("andre");
+});
 //POST: http://localhost:5225/api/produto/cadastrar
 app.MapPost("/api/produto/cadastrar", () => 
     "Cadastro de produtos");
 
 app.Run();
-
+//cadastrar um produto
+//a) pela url
+//b) pelo corpo da requisicao
+//2) remover um produto 
+//3) alterar produto
